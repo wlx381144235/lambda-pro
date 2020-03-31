@@ -58,30 +58,27 @@ public class StreamCollectPrac {
 			System.out.println(e);
 		}
 		// // 调用toArray方法（参数是构造器）来返回一个指定类型的数组
-		// Integer[] numbers3 = Stream.iterate(0, n -> n + 1).limit(10).toArray(Integer[]::new);
-		// System.out.println("numbers3:" + numbers3);
+		Integer[] numbers3 = Stream.iterate(0, n -> n + 1).limit(10).toArray(Integer[]::new);
+		
 		// // 下面是两种方法来返回HashSet，下面还简单点，上面的那种方法感觉像是为每个元素创建一个HashSet，然后放进去，再讲所有的HashSet加起来
-		// HashSet<String> noVowelHashSet = noVowels().collect(HashSet::new, HashSet::add, HashSet::addAll);
-		// //与上面一样 HashSet<String> noVowelHashSet = noVowels().collect(Collectors.toCollection(HashSet::new));
-		// show("noVowelHashSet:aaa", noVowelHashSet);
-		// Set<String> noVowelSet = noVowels().collect(Collectors.toSet());
-		// show("noVowelSet", noVowelSet);
-		// // 这种方法就是比较好的方法了
-		// TreeSet<String> noVowelTreeSet = noVowels().collect(Collectors.toCollection(TreeSet::new));
-		// show("noVowelTreeSet", noVowelTreeSet);
-		//
-		// String result = noVowels().limit(10).collect(Collectors.joining());
-		// System.out.println("Joining:" + result);
-		//
-		// result = noVowels().limit(10).collect(Collectors.joining(","));
-		// System.out.println("JoinWith ," + result);
-		//
-		// IntSummaryStatistics summary = noVowels().collect(Collectors.summarizingInt(String::length));
-		// double averageWordLength = summary.getAverage();
-		// double maxWordLength = summary.getMax();
-		// System.out.println("Average word length: " + averageWordLength);
-		// System.out.println("Max word length: " + maxWordLength);
-		// System.out.println("forEach:");
-		// noVowels().limit(10).forEach(System.out::println);
+		HashSet<String> noVowelHashSet = noVowels().collect(HashSet::new, HashSet::add, HashSet::addAll);
+		//与上面一样 HashSet<String> noVowelHashSet = noVowels().collect(Collectors.toCollection(HashSet::new));
+		
+		Set<String> noVowelSet = noVowels().collect(Collectors.toSet());
+		
+		// 这种方法就是比较好的方法了
+		TreeSet<String> noVowelTreeSet = noVowels().collect(Collectors.toCollection(TreeSet::new));
+		
+		//制造分隔符
+		String result = noVowels().limit(10).collect(Collectors.joining());
+		
+
+		result = noVowels().limit(10).collect(Collectors.joining(","));
+		
+		//统计相关
+		IntSummaryStatistics summary = noVowels().collect(Collectors.summarizingInt(String::length));
+		double averageWordLength = summary.getAverage();
+		double maxWordLength = summary.getMax();
+		
 	}
 }
