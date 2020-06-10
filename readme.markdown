@@ -8,3 +8,5 @@ List<String> list = new ArrayList<String>();
 		list.add("But the girl loves another girl");
 		List<String> copy = list.stream().map(e -> e.split(" ")).flatMap(Arrays::stream).distinct().collect(Collectors.toList());
 ```
+
+接下来老子就试试dev开发之后merge到master
